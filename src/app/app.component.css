@@ -1,0 +1,35 @@
+
+
+.navbar {
+  background-color: #333; /* Dark background */
+  
+}
+
+.navbar ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 10;
+  margin: 0;
+  display: flex; /* Align items in a row */
+
+}
+
+.navbar li {
+  padding: 40px 20px;
+}
+
+
+.navbar  {
+  flex-grow: 1;
+  font-weight: bold;
+  color: white; /* For the 'Demo App' text without a link */
+}
+.subscription-form{
+    padding-top: 15px;
+    background-color: rgb(15, 15, 28);
+    text-align: center;
+    
+    height: 30vh;
+  }
+  .subcribe{
+    padding-top: 15px;
+  }

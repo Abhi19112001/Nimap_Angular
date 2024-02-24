@@ -1,0 +1,85 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <div class="reg">
+    <div>
+      <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+      <br />
+
+      <input
+        type="file"
+        id="photo"
+        (change)="onFileChange($event)"
+        accept="image/*"
+      />
+    </div>
+    <div class="detail">
+      <div class="d-flex" class="p-2">
+        <input
+          type="text"
+          formControlName="firstname"
+          placeholder="firstName"
+        />
+        <input
+          type="text m-2"
+          formControlName="lastname"
+          placeholder="LastName"
+        />
+      </div>
+      <div class="p-2">
+        <input type="text" formControlName="email" placeholder="Email" />
+      </div>
+      <div class="p-2">
+        <input
+          type="text"
+          formControlName="contact"
+          placeholder="(541)754-3010"
+        />
+      </div>
+      <div>
+        <span>Age</span>20<input
+          type="range"
+          formControlName="age"
+          
+          min="18"
+          max="80"
+        />80
+      </div>
+      <div class="p-2">
+        <label for="state">State</label>
+        <select formControlName="state" id="state">
+          <option value="">Select State</option>
+          <option *ngFor="let state of states" [value]="state.value">
+            {{ state.label }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <select formControlName="country" id="country" required>
+          <option value="">Select Country</option>
+          <option *ngFor="let country of countries" [value]="country.value">
+            {{ country.label }}
+          </option>
+        </select>
+      </div>
+      <div class="p-2">
+        <input type="text" formControlName="address" placeholder="Address" />
+      </div>
+      <diV>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="newsletter" />
+          <label class="form-check-label" for="newsletter"
+            >Subscribe to newsletter</label
+          >
+        </div>
+      </diV>
+      <button
+        class="btn btn-primary p-2"
+        type="submit"
+        [disabled]="!registrationForm.valid"
+      >
+        Register
+      </button>
+      <button class="btn btn-secondary p-2 m-2" type="reset">Reset</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>FristName</th>
+      <th>LastName</th>
+      <th>Email</th>
+      <th>Contact</th>
+      <th>Age</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Address</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of profile">
+      <td>{{ x.firstname }}</td>
+      <td>{{ x.lastname }}</td>
+      <td>{{ x.email }}</td>
+      <td>{{ x.contact }}</td>
+      <td>{{ x.age }}</td>
+      <td>{{ x.state }}</td>
+      <td>{{ x.country }}</td>
+      <td>{{ x.address }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="ondelete(x.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

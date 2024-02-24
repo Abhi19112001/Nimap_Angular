@@ -1,0 +1,44 @@
+.body{
+    background-image: url('../../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 50vh;
+}
+
+.search-container {
+    text-align: center;
+    text-decoration-color: white;
+    padding-top: 50px;
+
+    
+  }
+  p{
+    font-style: italic;
+    font-size: large;
+  }
+  
+  .checkboxes{
+    margin-top: 10px;
+    margin-left: 2px;
+    justify-content: space-around;
+  }
+  #location{
+    margin-left: 20px;
+  }
+  #ch2{
+    margin-left: 20px;
+  }
+  #ch1{
+    margin-right: 20px;
+  }
+  .company-intro{
+    
+    background-color: rgb(173, 215, 215);
+    text-align: center;
+    min-height: 40vh;
+  }
+  #com{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+ 
