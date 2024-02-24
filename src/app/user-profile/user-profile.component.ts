@@ -18,5 +18,6 @@ export class UserProfileComponent implements OnInit {
   ondelete(id: number) {
     this.us.deleteUser(id).subscribe();
     alert('user delete Succesfully');
+    window.location.reload();
   }
 }

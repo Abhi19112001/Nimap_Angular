@@ -8,7 +8,7 @@ import { UserServiceService } from '../user-service.service';
   styleUrl: './user-registration.component.css',
 })
 export class UserRegistrationComponent implements OnInit {
-  constructor(private fb: FormBuilder, private us: UserServiceService ) {}
+  constructor(private fb: FormBuilder, private us: UserServiceService) {}
   registrationForm: FormGroup;
   states = [
     { label: 'Andhra Pradesh', value: 'Andhra Pradesh' },
@@ -58,7 +58,7 @@ export class UserRegistrationComponent implements OnInit {
   ];
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      photo: [null], // Handle photo data separately
+      photo: [], // Handle photo data separately
       firstname: [
         '',
         [Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(20)],
@@ -78,6 +78,5 @@ export class UserRegistrationComponent implements OnInit {
   onSubmit() {
     this.us.saveUser(this.registrationForm.value).subscribe();
     alert('user add sucesfully');
-    
   }
 }

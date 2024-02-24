@@ -4,12 +4,7 @@
       <i class="fa fa-user fa-5x" aria-hidden="true"></i>
       <br />
 
-      <input
-        type="file"
-        id="photo"
-        (change)="onFileChange($event)"
-        accept="image/*"
-      />
+      <input type="file" id="photo" formControlName="photo" accept="image/*" />
     </div>
     <div class="detail">
       <div class="d-flex" class="p-2">
@@ -38,7 +33,6 @@
         <span>Age</span>20<input
           type="range"
           formControlName="age"
-          
           min="18"
           max="80"
         />80
@@ -78,6 +72,13 @@
         [disabled]="!registrationForm.valid"
       >
         Register
+      </button>
+      <button
+        class="btn btn-secondary p-2 m-2"
+        routerLink="/Profile"
+        type="reset"
+      >
+        Profile
       </button>
       <button class="btn btn-secondary p-2 m-2" type="reset">Reset</button>
     </div>

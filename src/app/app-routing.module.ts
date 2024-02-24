@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'register', component: UserRegistrationComponent },
   { path: 'profile', component: UserProfileComponent },
+  {path:'Profile',component:UserProfileComponent},
   {
     path: 'home',
     component: HomePageComponent,
