@@ -1,14 +1,16 @@
 <div class="body">
   <div class="search-container">
-    <p class="text-white ">I'm looking for...</p>
+    <p class="text-white">I'm looking for...</p>
     <input type="text" placeholder="Enter a Job Description" />
-    <button class="btn btn-primary ms-5" >Search</button>
+    <button class="btn btn-primary ms-5">Search</button>
     <div class="checkboxes">
       <input id="ch1" type="checkbox" id="checkbox1" />
-      <label class="text-white "for="checkbox1">Full Time </label>
+      <label class="text-white" for="checkbox1">Full Time </label>
 
-      <input id="ch2"  type="checkbox" id="checkbox2" />
-      <label class="text-white " for="checkbox2">Part time/casual/freelance</label>
+      <input id="ch2" type="checkbox" id="checkbox2" />
+      <label class="text-white" for="checkbox2"
+        >Part time/casual/freelance</label
+      >
 
       <select id="location">
         <option value="">Select your Location</option>
@@ -17,15 +19,542 @@
         <option value="Banglore">Banglore</option>
       </select>
     </div>
-    <button class="btn btn-primary mt-5 " routerLink="/register">Register</button>
+    <button
+      type="button"
+      class="btn btn-primary me-5"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      REGISTER
+    </button>
+    <section class="company-intro">
+      <h3 id="com">We're leaders ,<br />in Creative Digital Recruitment</h3>
+      <h4>
+        Based in Surry Hills, the creative hub of Sydney we are surrounded by
+        creativity,<br />
+        and that reflects on the type of jobs we recruit for.
+      </h4>
+      <button class="btn btn-secondary mt-3">FIND OUT MORE ABOUT US</button>
+    </section>
+    <!-- <button class="btn btn-primary mt-5" routerLink="/register">
+      Register
+    </button> -->
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg p-2">
+        <div class="modal-content">
+          <div class="modal-header bg-primary">
+            <h5 class="modal-title text-white" id="exampleModalLabel">
+              Register
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <form
+                [formGroup]="registerForm"
+                (ngSubmit)="submitregisterForm(registerForm.value)"
+              >
+                <div class="container form-content">
+                  <div class="row">
+                    <div class="col-3 text-center form-group">
+                      <label>
+                        <img
+                          class="img-fluid mb-3"
+                          src="../../assets/Images/users.png"
+                          *ngIf="profilePhoto == null"
+                        />
+
+                        <img
+                          class="img-fluid mb-3"
+                          src="{{ profilePhoto }}"
+                          *ngIf="profilePhoto != null"
+                        />
+
+                        <input
+                          type="file"
+                          formControlName="profilePhoto"
+                          (change)="imagePreview($event)"
+                          accept="image/*"
+                        />Upload your Photo <span class="text-danger"> *</span>
+                      </label>
+
+                      <div *ngIf="!imageValid">
+                        <small class="text-danger"
+                          >Please Upload an Image with resolution of <br />
+                          310 x 325 px</small
+                        >
+                      </div>
+                    </div>
+                    <div class="col-9">
+                      <div class="row">
+                        <div class="col-7 mb-0 form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="First Name"
+                            formControlName="firstName"
+                            [class.is-invalid]="
+                              registerForm.get('firstName').invalid &&
+                              registerForm.get('firstName').touched
+                            "
+                          />
+
+                          <div
+                            *ngIf="
+                              registerForm.get('firstName').invalid &&
+                              registerForm.get('firstName').touched
+                            "
+                          >
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                registerForm.get('firstName').errors?.['required']
+                              "
+                              >First Name Required</small
+                            >
+
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                registerForm.get('firstName').errors?.['pattern']
+                              "
+                              >Enter Valid Name and maximum 20 characters</small
+                            >
+                          </div>
+                        </div>
+
+                        <div class="col-5 mb-0 form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Last Name"
+                            formControlName="lastName"
+                            [class.is-invalid]="
+                              registerForm.get('lastName').invalid &&
+                              registerForm.get('lastName').touched
+                            "
+                          />
+
+                          <div
+                            *ngIf="
+                              registerForm.get('lastName').invalid &&
+                              registerForm.get('lastName').touched
+                            "
+                          >
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                registerForm.get('lastName').errors?.['required']
+                              "
+                              >Last Name Required</small
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-control"
+                          placeholder="Email"
+                          formControlName="email"
+                          [class.is-invalid]="
+                            registerForm.get('email').invalid &&
+                            registerForm.get('email').touched
+                          "
+                        />
+
+                        <div
+                          *ngIf="
+                            registerForm.get('email').invalid &&
+                            registerForm.get('email').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="registerForm.get('email').errors?.['required']"
+                            >Email Required</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="registerForm.get('email').errors?.['pattern']"
+                            >Please Enter ValidEmail</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="(541) 754-3010"
+                          formControlName="contactNo"
+                          [class.is-invalid]="
+                            registerForm.get('contactNo').invalid &&
+                            registerForm.get('contactNo').touched
+                          "
+                        />
+
+                        <div
+                          *ngIf="
+                            registerForm.get('contactNo').invalid &&
+                            registerForm.get('contactNo').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              registerForm.get('contactNo').errors?.['required']
+                            "
+                            >Contact Number Required</small
+                          >
+
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              registerForm.get('contactNo').errors?.['pattern']
+                            "
+                            >Please Enter Valid Contact No.</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-12 col-lg-3 age">Age : {{ age }}</div>
+                          <div class="col-12 col-lg-9">
+                            <input
+                              type="range"
+                              min="20"
+                              max="60"
+                              value="20"
+                              class="slider"
+                              id="myRange"
+                              (input)="rangedata($event.returnValue)"
+                              (change)="rangedata($event)"
+                              formControlName="age"
+                              [class.is-invalid]="
+                                registerForm.get('age').invalid &&
+                                registerForm.get('age').touched
+                              "
+                            />
+
+                            <div
+                              class="col-12 p-0 d-flex justify-content-between"
+                            >
+                              <span class="float-left">20</span>
+                              <span class="float-right">60</span>
+                            </div>
+
+                            <div
+                              *ngIf="
+                                registerForm.get('age').invalid &&
+                                registerForm.get('age').touched
+                              "
+                            >
+                              <small
+                                class="text-danger"
+                                *ngIf="registerForm.get('age').errors?.['required']"
+                                >Please Select Age</small
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <select
+                          formControlName="state"
+                          [class.is-invalid]="
+                            registerForm.get('state').invalid &&
+                            registerForm.get('state').touched
+                          "
+                        >
+                          <option selected hidden value="">State</option>
+                          <option value="Maharashtra">Maharashtra</option>
+                          <option value="Karnataka">Karnataka</option>
+                          <option value="Goa">Goa</option>
+                          <option value="Kerela">Kerela</option>
+                          <option value="Andaman & Nicobar">
+                            Andaman & Nicobar
+                          </option>
+                          <option value="Lakshwadeep">Lakshwadeep</option>
+                        </select>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('state').invalid &&
+                            registerForm.get('state').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="registerForm.get('state').errors?.['required']"
+                            >Please Select a State</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <select
+                          formControlName="country"
+                          [class.is-invalid]="
+                            registerForm.get('country').invalid &&
+                            registerForm.get('country').touched
+                          "
+                        >
+                          <option selected hidden value="">Country</option>
+                          <option value="India">India</option>
+                          <option value="Russia">Russia</option>
+                          <option value="Africa">Africa</option>
+                          <option value="China">China</option>
+                          <option value="Madagascar">Madagascar</option>
+                          <option value="Sweden">Sweden</option>
+                          <option value="Norway">Norway</option>
+                          <option value="Italy">Italy</option>
+                        </select>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('country').invalid &&
+                            registerForm.get('country').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="registerForm.get('country').errors?.['required']"
+                            >Please Select a Country</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <select
+                          formControlName="address"
+                          [class.is-invalid]="
+                            registerForm.get('address').invalid &&
+                            registerForm.get('address').touched
+                          "
+                          (change)="
+                            displayAddress(
+                              registerForm.controls['address'].value
+                            )
+                          "
+                        >
+                          <option selected hidden value="">Address</option>
+                          <option value="1">Home</option>
+                          <option value="2">Company</option>
+                        </select>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('address').invalid &&
+                            registerForm.get('address').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="registerForm.get('address').errors?.['required']"
+                            >Please Select Address</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <textarea
+                          *ngIf="!homeHide"
+                          class="form-control"
+                          placeholder="Home Address 1"
+                          formControlName="address1"
+                          [class.is-invalid]="
+                            registerForm.get('address1').invalid &&
+                            registerForm.get('address1').touched
+                          "
+                        >
+                        </textarea>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('address1').invalid &&
+                            registerForm.get('address1').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              registerForm.get('address1').errors?.['required']
+                            "
+                            >Home Address Required</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <textarea
+                          *ngIf="!homeHide"
+                          class="form-control"
+                          placeholder="Home Address 2"
+                          formControlName="address2"
+                          [class.is-invalid]="
+                            registerForm.get('address2').invalid &&
+                            registerForm.get('address2').touched
+                          "
+                        >
+                        </textarea>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('address2').invalid &&
+                            registerForm.get('address2').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              registerForm.get('address2').errors?.['required']
+                            "
+                            >Home Address Required</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <textarea
+                          *ngIf="!companyHide"
+                          class="form-control"
+                          placeholder="Company Address 1"
+                          formControlName="companyAddress1"
+                          [class.is-invalid]="
+                            registerForm.get('companyAddress1').invalid &&
+                            registerForm.get('companyAddress1').touched
+                          "
+                        >
+                        </textarea>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('companyAddress1').invalid &&
+                            registerForm.get('companyAddress1').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              registerForm.get('companyAddress1').errors
+                                ?.['required']
+                            "
+                          >
+                            Company Address Required</small
+                          >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <textarea
+                          *ngIf="!companyHide"
+                          class="form-control"
+                          placeholder="Company Address 2"
+                          formControlName="companyAddress2"
+                          [class.is-invalid]="
+                            registerForm.get('companyAddress2').invalid &&
+                            registerForm.get('companyAddress2').touched
+                          "
+                        >
+                        </textarea>
+
+                        <div
+                          *ngIf="
+                            registerForm.get('companyAddress2').invalid &&
+                            registerForm.get('companyAddress2').touched
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              registerForm.get('companyAddress2').errors
+                                ?.['required']
+                            "
+                            >Company Address Required</small
+                          >
+                        </div>
+                      </div>
+                      <!-- <div class="form-group">
+                        <mat-form-field class="example-chip-list">
+                          <mat-chip-grid aria-label="Fruit selection">
+                            <mat-chip
+                              *ngFor="let tags of myTag"
+                              [removable]="removable"
+                              (removed)="remove(tags)"
+                            >
+                              {{ tags.name }}
+                              <mat-icon matChipRemove *ngIf="removable"
+                                >cancel</mat-icon
+                              >
+                            </mat-chip>
+
+                            <input
+                              placeholder="Tags"
+                              class="tags"
+                              [matChipInputFor]="chiplist"
+                              [matChipInputSeparatorKeyCodes]="
+                                separatorKeysCodes
+                              "
+                              [matChipInputAddOnBlur]="addOnBlur"
+                              (matChipInputTokenEnd)="add($event)"
+                              formControlName="tags"
+                            />
+                          </mat-chip-grid>
+                        </mat-form-field>
+                      </div> -->
+                      <div class="form-group">
+                        <tag-input
+                          class="form-control"
+                          placeholder="Tags"
+                          formControlName="tags"
+                        >
+                        </tag-input>
+                      </div>
+                      <div class="form-check p-2 m-2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="newsletter"
+                        />
+                        <label class="form-check-label" for="newsletter"
+                          >Subscribe to newsletter</label
+                        >
+                      </div>
+
+                      <input
+                        class="btn bg-primary p-2 m-2"
+                        type="submit"
+                        value="Submit"
+                      />
+
+                      <button class="btn btn-secondary p-2 m-2" type="reset">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<section class="company-intro ">
-    <h3 id="com">We're leaders ,<br>in Creative Digital Recruitment</h3>
-    <h4 >Based in Surry Hills, the creative hub of Sydney we are surrounded by creativity,<br> and that reflects on the type of jobs we recruit for.</h4>
-    <button class="btn btn-secondary mt-3">FIND OUT MORE ABOUT US</button>
-</section>
-
-
-
-

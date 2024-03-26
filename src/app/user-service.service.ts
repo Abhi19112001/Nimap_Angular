@@ -1,19 +1,37 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { Observable } from 'rxjs';
+const myheader = new HttpHeaders({ 'Content-Type': 'application/json' });
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserServiceService {
+  url = 'http://localhost:3000/User';
   constructor(private http: HttpClient) {}
-  saveUser(user: User) {
-    return this.http.post('http://localhost:3000/User', user);
+  insertData(registerData): Observable<User> {
+    return this.http.post<User>(this.url, registerData, {
+      headers: myheader,
+    });
   }
-  getUser() {
-    return this.http.get('http://localhost:3000/User');
+  getData(id: number): Observable<User> {
+    return this.http.get<User>(this.url + '/' + id);
   }
-  deleteUser(id: number) {
-    return this.http.delete('http://localhost:3000/User/' + id);
+
+  updateData(editData): Observable<User> {
+    return this.http.put<User>(this.url + '/' + editData.id, editData, {
+      headers: myheader,
+    });
+  }
+
+  updateProfileData(editProfileData): Observable<User> {
+    return this.http.patch<User>(
+      this.url + '/' + editProfileData.id,
+      editProfileData,
+      {
+        headers: myheader,
+      }
+    );
   }
 }
