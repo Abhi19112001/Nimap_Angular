@@ -1,25 +1,21 @@
 {
   "User": [
     {
-      "id": "70b5",
-      "firstName": "Abhay",
-      "lastName": "sgfsgf",
+      "id": "7eed",
+      "firstName": "Abhya",
+      "lastName": "Adamane",
       "email": "abhayadamane1911@gmail.com",
-      "contactNo": 1234567890,
-      "age": 24,
+      "contactNo": 7387693982,
+      "age": 38,
       "state": "Maharashtra",
       "country": "India",
       "address": "1",
-      "address1": "Bhojane Hause Beside Gaytri Apartment,Bharat colony Karvenagar Pune",
-      "address2": "Bhojane Hause Beside Gaytri Apartment,Bharat colony Karvenagar Pune",
+      "address1": "At.Jodgavhan post.tornala tq.malegaon dist.washim",
+      "address2": "At.Jodgavhan post.tornala tq.malegaon dist.washim",
       "tags": [
         {
-          "display": "cricket",
-          "value": "cricket"
-        },
-        {
-          "display": "kabbadi",
-          "value": "kabbadi"
+          "display": "Cricket",
+          "value": "Cricket"
         }
       ],
       "newsLetter": "",

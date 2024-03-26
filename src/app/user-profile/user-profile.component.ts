@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   //readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  myTag: string  ;
+  myTag: string;
 
   id: number;
   editForm: FormGroup;
@@ -75,7 +75,7 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.service.getData(this.id).subscribe((res) => {
-      this.myTag=res.tags;
+      this.myTag = res.tags;
       // for (var i = 0; i < data.length; i++) {
       //   this.tagdata.push(data[i]['name']);
       // }
@@ -84,7 +84,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
   editProfile(id: string) {
-    
     this.service.getData(this.id).subscribe((res) => {
       if (res['address'] == '1') {
         this.homeHide = false;
@@ -173,7 +172,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   rangedata(agevalue: any) {
-    this.age = agevalue;
+    this.age = agevalue.target.value;
   }
 
   displayAddress(address: any) {
